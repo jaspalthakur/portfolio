@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaspal Thakur - Web Developer</title>
+  <style>
+    /* ==========================================================================
+       1. CSS RESET & COLOR VARIABLES (Light Mode, High Contrast)
+       ========================================================================== */
+    :root {
+      --bg-color: #fcfcfd;
+      --card-bg: #ffffff;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --border-color: #e5e7eb;
+      --brand-accent: #1d4ed8;
+      --brand-hover: #1e40af;
+      --nav-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Target max container width */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      color: var(--text-main);
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    /* Links & Minimum 44px Touch Targets */
+    a, button {
+      color: var(--brand-accent);
+      text-decoration: none;
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    a:hover, a:focus-visible {
+      text-decoration: underline;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--brand-accent);
+      outline-offset: 2px;
+    }
+
+    section {
+      padding: 3.5rem 0;
+    }
+
+    /* ==========================================================================
+       2. HEADER & NAVIGATION (Flexbox)
+       ========================================================================== */
+    header {
+      background-color: var(--nav-bg);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .brand-logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .brand-logo:hover {
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 0.5rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0 0.75rem;
+    }
+
+    nav a:hover {
+      color: var(--brand-accent);
+    }
+
+    /* ==========================================================================
+       3. HERO / ABOUT SECTION
+       ========================================================================== */
+    .hero-text {
+      font-size: 1.15rem;
+      max-width: 680px;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.6rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background-color: var(--brand-accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--brand-hover);
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background-color: #f3f4f6;
+      text-decoration: none;
+    }
+
+    /* ==========================================================================
+       4. RESUME SECTION (Minimal Timeline)
+       ========================================================================== */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .timeline-item {
+      border-left: 2px solid var(--border-color);
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--brand-accent);
+    }
+
+    .timeline-date {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--brand-accent);
+    }
+
+    .timeline-role {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      margin-top: 0.1rem;
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    /* ==========================================================================
+       5. SKILLS SECTION (CSS Grid)
+       ========================================================================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.75rem;
+      list-style: none;
+    }
+
+    .skill-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       6. PROJECTS SECTION (CSS Grid)
+       ========================================================================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card h3 {
+      margin-bottom: 0.4rem;
+    }
+
+    .project-card p {
+      font-size: 0.925rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-links a {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       7. CONTACT & FOOTER SECTION
+       ========================================================================== */
+    footer {
+      border-top: 1px solid var(--border-color);
+      background-color: var(--card-bg);
+      padding: 3rem 0 2rem 0;
+      margin-top: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin: 1rem 0 2rem 0;
+    }
+
+    .copyright {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       8. MOBILE RESPONSIVENESS (Tested down to 360px)
+       ========================================================================== */
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+
+      nav {
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      nav ul {
+        padding: 0.25rem 0;
+      }
+
+      nav a {
+        padding: 0 0.5rem;
+      }
+
+      h1 {
+        font-size: 1.85rem;
+      }
+
+      section {
+        padding: 2.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo">Jaspal Thakur</a>
+      <nav aria-label="Main Navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Hero / About Section -->
+    <section id="about">
+      <h1>Hi, I'm Jaspal Thakur</h1>
+      <p class="hero-text">
+        I am a Web Developer focused on building clean, fast, and responsive web applications. I specialize in semantic HTML5, modern CSS layouts, and simple JavaScript solutions.
+      </p>
+      <div class="btn-group">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="#projects" class="btn btn-secondary">View Work</a>
+      </div>
+    </section>
+
+    <!-- Resume / Experience Section -->
+    <section id="resume">
+      <h2>Work &amp; Experience</h2>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-date">2024 — PRESENT</div>
+          <h3 class="timeline-role">Frontend Web Developer</h3>
+          <div class="timeline-company">TechCraft Solutions</div>
+          <p>Building mobile-responsive websites using semantic HTML, CSS Grid, and JavaScript. Improving cross-browser compatibility and page speed performance.</p>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-date">2023 — 2024</div>
+          <h3 class="timeline-role">Junior Web Developer</h3>
+          <p class="timeline-company">Digital Pulse Studio</p>
+          <p>Created responsive landing pages and maintained accessible web interface components according to modern web standards.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills Section (CSS Grid) -->
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <ul class="skills-grid">
+        <li class="skill-card">HTML5</li>
+        <li class="skill-card">CSS3</li>
+        <li class="skill-card">JavaScript</li>
+        <li class="skill-card">Git &amp; GitHub</li>
+        <li class="skill-card">Responsive Design</li>
+        <li class="skill-card">Flexbox &amp; Grid</li>
+      </ul>
+    </section>
+
+    <!-- Projects Section (CSS Grid) -->
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="projects-grid">
+        
+        <article class="project-card">
+          <div>
+            <h3>Task Tracker App</h3>
+            <p>A simple task management application built with vanilla JavaScript, featuring dynamic list updates and browser local storage.</p>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank" rel="noopener noreferrer">Live Demo &rarr;</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">Code &rarr;</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div>
+            <h3>Weather Forecast Dashboard</h3>
+            <p>A light, responsive weather app fetching real-time weather metrics using JavaScript and a public weather API.</p>
+          </div>
+          <div class="project-links">
+            <a href="#" target="_blank" rel="noopener noreferrer">Live Demo &rarr;</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">Code &rarr;</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Contact / Footer Section -->
+  <footer id="contact">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <p>I am open to web development opportunities and freelance projects. Reach out directly via email or find me online:</p>
+      
+      <div class="contact-links">
+        <a href="mailto:jaspal@example.com" class="btn btn-primary">Email Jaspal</a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+
+      <p class="copyright">&copy; 2026 Jaspal Thakur. Built with simple semantic HTML &amp; CSS.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
